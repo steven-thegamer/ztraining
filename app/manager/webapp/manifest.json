@@ -1,0 +1,179 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "manager",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.17.6",
+      "toolsId": "20fa92c3-97f6-4cfd-baf4-cdcd77fb1362"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/MainService/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "zmanager-manage": {
+          "semanticObject": "zmanager",
+          "action": "manage",
+          "title": "{{zmanager-manage.flpTitle}}",
+          "subTitle": "{{zmanager-manage.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.138.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "manager.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "ManagerList",
+          "target": "ManagerList"
+        },
+        {
+          "pattern": "Manager({key}):?query:",
+          "name": "ManagerObjectPage",
+          "target": "ManagerObjectPage"
+        },
+        {
+          "pattern": "Manager({key})/Project({key2}):?query:",
+          "name": "Emp2ProObjectPage",
+          "target": "Emp2ProObjectPage"
+        }
+      ],
+      "targets": {
+        "ManagerList": {
+          "type": "Component",
+          "id": "ManagerList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Manager",
+              "variantManagement": "Page",
+              "navigation": {
+                "Manager": {
+                  "detail": {
+                    "route": "ManagerObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              },
+              "initialLoad": "Enabled"
+            }
+          }
+        },
+        "ManagerObjectPage": {
+          "type": "Component",
+          "id": "ManagerObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Manager",
+              "navigation": {
+                "Project": {
+                  "detail": {
+                    "route": "Emp2ProObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Emp2ProObjectPage": {
+          "type": "Component",
+          "id": "Emp2ProObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Manager/Project"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
