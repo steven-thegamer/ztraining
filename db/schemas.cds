@@ -32,6 +32,13 @@ entity Project {
     Title : String;
     Description : String;
     PIC : Association to many Emp2Pro on PIC.Project = $self;
+    Comments : Association to many Comments on Comments.Project = $self;
+}
+
+entity Comments : cuid {
+    Project : Association to one Project;
+    User : String;
+    Comment : String;
 }
 
 entity Emp2Pro {

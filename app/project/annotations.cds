@@ -25,6 +25,12 @@ annotate service.Projects with @(
             ID : 'i18nEmployeesInCharge',
             Target : 'PIC/@UI.LineItem#i18nEmployeesInCharge',
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : '{i18n>Comments}',
+            ID : 'i18nComments',
+            Target : 'Comments/@UI.LineItem#i18nComments',
+        },
     ],
     UI.FieldGroup #i18nGeneral : {
         $Type : 'UI.FieldGroupType',
@@ -41,6 +47,13 @@ annotate service.Projects with @(
             },
         ],
     },
+    UI.Identification : [
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'MainService.createComment',
+            Label : '{i18n>CreateComment}',
+        },
+    ],
 );
 
 annotate service.Emp2Pro with @(
@@ -62,6 +75,23 @@ annotate service.Emp2Pro with @(
             Value : Employee.Email,
             Label : '{i18n>Email}',
             @UI.Importance : #Low,
+        },
+    ]
+);
+
+annotate service.Comments with @(
+    UI.LineItem #i18nComments : [
+        {
+            $Type : 'UI.DataField',
+            Value : User,
+            Label : 'User',
+            @UI.Importance : #Medium,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Comment,
+            Label : 'Comment',
+            @UI.Importance : #High,
         },
     ]
 );
