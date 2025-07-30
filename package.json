@@ -19,6 +19,7 @@
     }
   },
   "sapux": [
-    "app/manager"
+    "app/manager",
+    "app/project"
   ]
 }
