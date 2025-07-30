@@ -21,6 +21,11 @@ annotate service.Manager with @(
             Value : Email,
             Label : '{i18n>Email}',
         },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'MainService.EntityContainer/checkID',
+            Label : 'checkID',
+        },
     ],
     UI.Facets : [
         {

@@ -11,6 +11,11 @@ annotate service.Projects with @(
             Value : Description,
             Label : '{i18n>Description}',
         },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'MainService.EntityContainer/checkID',
+            Label : '{i18n>CheckId}',
+        },
     ],
     UI.Facets : [
         {

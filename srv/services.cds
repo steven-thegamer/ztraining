@@ -10,6 +10,7 @@ service MainService {
         action createComment(user : String, comment : String);
     };
     entity Comments as projection on schema.Comments;
+    action checkID() returns String;
 }
 
 annotate MainService.Manager with @odata.draft.enabled;

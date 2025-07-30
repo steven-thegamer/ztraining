@@ -133,6 +133,11 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "ResponsiveTable"
+                  },
+                  "actions": {
+                    "DataFieldForAction::MainService.EntityContainer::checkID": {
+                      "enableOnSelect": "single"
+                    }
                   }
                 }
               },
